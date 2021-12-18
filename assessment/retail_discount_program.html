@@ -1,0 +1,128 @@
+<!-- 
+author: A.Furkan Demirci
+coding-time: 2 hour
+-->
+
+<?xml version = "1.0" ?>
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+	   <title>Technology Assessment</title>
+	 
+	   <script type = "text/javascript">
+	   
+		  var name, //name entered by the user
+			   now = new Date(),
+			   hour = now.getHours(); //current hour (0-23)
+		       //read the name from the prompt box as string
+			   name = window.prompt("Please enter your name","Kullanıcı");
+			
+	      var user_type, //type of the user;
+			  shop_type,  //type of shopping type groceries and other
+			  discount,
+			  discperc,
+			  cost,  //total cost for shopping.
+			  coefficient, //cost coefficient in order to calculate the discount.
+		      costValue; //total cost for shopping.
+			  
+			   //determine whether it's morning.
+			   if(hour < 12)
+			      document.write("<h1>Good morning ");
+				
+			   //determine whether the time is PM.
+			   if(hour >= 12)
+			   {
+				  //convert to a 12 hour clock.
+				  hour = hour - 12;
+				  
+				  //determine whether it is before 6 PM)
+				  if(hour < 6)
+					document.write("<h1>Good Afternoon ");
+				
+				  //determine whether it is after 6 PM)
+				  if(hour >= 6)
+				    document.write("<h1>Good Evening ");
+			   }
+			   
+			   document.writeln(name + "; Welcome to the Technology Assessment! </h1>");	
+				
+               // First of all, enter the cost shopping
+			   cost = window.prompt("Enter the cost of shopping: ","0");
+			   costValue = parseFloat(cost);
+			   
+			   //Then enter the shopping type 
+			   shop_type = window.prompt("Enter the shopping type","");
+			   if(shop_type.toLowerCase() === "groceries")
+			   {
+				 cost = cost * 1;
+			   } //end if groceries
+			   
+			   else if(shop_type.toLowerCase() === "other")
+			   {
+				 //Enter the type of the user 1-store employee 2-affiliate 3-customer over 2 years
+				 user_type = window.prompt("Enter the type of the user:","default");
+				 user_type = parseInt(user_type);
+				 
+				 /*
+				 if(user_type == 1)
+				   discperc = 0.30;
+				   
+				   else
+				     if(user_type == 2)
+                       discperc = 0.10;
+                   
+				     else
+				       if(user_type == 3)
+					     discperc = 0.05;
+					   
+					   else
+					     discperc = 0;
+				   */
+				   
+				 switch ( user_type )
+				 {
+					case 1:
+					   discperc = 0.30;
+				       break;
+					
+					case 2:
+					   discperc = 0.10;
+					   break;
+					
+					case 3:
+					   discperc = 0.05;
+				       break;
+					   
+					default: 
+					   discperc = 0;
+				 
+				 } //end switch.
+				 
+				 
+				 //calculate the total cost 
+				 cost = cost - (cost * discperc);
+				 
+			   } //end if other
+	
+
+			   //For total Cost;
+			   //Calculate the coefficent in order to find discount per 5 dollar
+			   coefficient = costValue / 100;
+			   if(coefficient >= 1)
+			   {
+			      discount = coefficient * 5;
+				  cost = cost - discount;
+			   }
+			   //end cost shopping coefficiency
+
+               document.write("<h1>User Type: " + user_type + " paid " + cost + "$</h1>"); 
+			   
+	   </script>
+	</head>
+	
+    <body>
+	   <p>Click Refresh (or Reload) to run this script again.</p>
+	</body>
+</html>
